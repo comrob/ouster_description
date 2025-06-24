@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ouster">
+  <xacro:arg name="tf_prefix" default="os1" />
+
+  <xacro:include filename="$(find ouster_description)/urdf/OS1-64.urdf.xacro" />
+
+  <xacro:OS1-64 name="$(arg tf_prefix)" parent="world" imu_link="$(arg tf_prefix)_imu" lidar_link="$(arg tf_prefix)_lidar">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:OS1-64>
+
+  <link name="world" />
+
+</robot>

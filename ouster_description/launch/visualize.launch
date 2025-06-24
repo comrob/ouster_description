@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="tf_prefix" default="os1" />
+
+  <param name="robot_description" 
+         command="$(find xacro)/xacro --inorder $(find ouster_description)/urdf/my_ouster_model.urdf.xacro tf_prefix:=$(arg tf_prefix)" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ouster_description)/rviz/example.rviz" />
+  
+  <node pkg="tf" type="static_transform_publisher" name="base_link_bridge"
+      args="0 0 0 0 0 0 $(arg tf_prefix)/os_sensor world 100" />
+</launch>
